@@ -28,25 +28,64 @@
     <form [formGroup]="formularioEditar" (ngSubmit)="editar()">
       <div class="mb-3">
         <label for="title" class="form-label">Título</label>
-        <input type="text" id="title" formControlName="title" class="form-control" />
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': formularioEditar.get('title')?.invalid && formularioEditar.get('title')?.touched }"
+        />
+        <div *ngIf="formularioEditar.get('title')?.invalid && formularioEditar.get('title')?.touched" class="text-danger">
+          <p *ngIf="formularioEditar.get('title')?.errors?.['required']">Campo obligatorio</p>
+        </div>
       </div>
       <div class="mb-3">
         <label for="author" class="form-label">Autor</label>
-        <input type="text" id="author" formControlName="author" class="form-control" />
+        <input
+          type="text"
+          id="author"
+          formControlName="author"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': formularioEditar.get('author')?.invalid && formularioEditar.get('author')?.touched }"
+        />
+        <div *ngIf="formularioEditar.get('author')?.invalid && formularioEditar.get('author')?.touched" class="text-danger">
+          <p *ngIf="formularioEditar.get('author')?.errors?.['required']">Campo obligatorio</p>
+        </div>
       </div>
       <div class="mb-3">
         <label for="genre" class="form-label">Género</label>
-        <select class="form-select" id="genre" formControlName="genre">
+        <select
+          class="form-select"
+          id="genre"
+          formControlName="genre"
+          [ngClass]="{ 'is-invalid': formularioEditar.get('genre')?.invalid && formularioEditar.get('genre')?.touched }"
+        >
           <option value="" disabled selected>Seleccione un género</option>
           <option *ngFor="let genre of literaryGenres" [value]="genre.name">
             {{ genre.name }}
           </option>
         </select>
+        <div *ngIf="formularioEditar.get('genre')?.invalid && formularioEditar.get('genre')?.touched" class="text-danger">
+          <p *ngIf="formularioEditar.get('genre')?.errors?.['required']">Campo obligatorio</p>
+        </div>
       </div>
       <div class="mb-3">
         <label for="publishedYear" class="form-label">Publicación</label>
-        <input type="text" id="publishedYear" formControlName="publishedYear" class="form-control" />
+        <input
+          type="text"
+          id="publishedYear"
+          formControlName="publishedYear"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': formularioEditar.get('publishedYear')?.invalid && formularioEditar.get('publishedYear')?.touched }"
+        />
+        <div
+          *ngIf="formularioEditar.get('publishedYear')?.invalid && formularioEditar.get('publishedYear')?.touched"
+          class="text-danger"
+        >
+          <p *ngIf="formularioEditar.get('publishedYear')?.errors?.['pattern']">Solo se aceptan valores numéricos</p>
+        </div>
       </div>
+      
       <button type="submit" class="btn btn-success">Editar</button>
     </form>
 

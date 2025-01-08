@@ -20,7 +20,7 @@ export class AddBookComponent implements OnInit {
       title: ['', Validators.required],
       author: ['', Validators.required],
       genre: ['', Validators.required],
-      publishedYear: [''],
+      publishedYear: ['', [Validators.pattern('^[0-9]*$')]],
     });
     
   }

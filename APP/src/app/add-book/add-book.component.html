@@ -1,6 +1,12 @@
 <ng-container >
   <div>
     <h1>Agregar un nuevo libro:</h1>
+    <div *ngIf="successMessage" class="alert alert-success" role="alert">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
     <div>
       <form [formGroup]="formularioCrear" (ngSubmit)="crear()">
           <div class="mb-3">
@@ -23,10 +29,12 @@
               </select>
               <div class="text-danger" *ngIf="hasErrors('genre', 'required')">Campo requerido</div>
             </div>            
-          <div class="mb-3">
+            <div class="mb-3">
               <label for="publishedYear" class="form-label">Publicacion</label>
-              <input type="text" class="form-control" id="publishedYear"formControlName="publishedYear">
-            </div>           
+              <input [ngClass]="{'is-invalid': hasErrors('publishedYear', 'pattern')}" type="text" class="form-control" id="publishedYear" formControlName="publishedYear">
+              <div class="text-danger" *ngIf="hasErrors('publishedYear', 'pattern')">Debe ser un número</div>
+            </div>
+                       
             <button type="submit" class ="btn btn-primary">Crear</button>
         </form>
   </div>

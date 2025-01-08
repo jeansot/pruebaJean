@@ -25,7 +25,7 @@ export class EditBookComponent implements OnInit {
   ) {
     this.searchForm = this.form.group({ 
       searchQuery: ['',[Validators.required,
-                        Validators.pattern('^[0-9]+$') // Solo permite valores numéricos
+                        Validators.pattern('^[0-9]+$') 
         ]
       ] 
     });
@@ -34,7 +34,7 @@ export class EditBookComponent implements OnInit {
       title: ['', Validators.required],
       author: ['', Validators.required],
       genre: ['', Validators.required],
-      publishedYear: [''],
+      publishedYear: ['', [Validators.pattern('^[0-9]*$')]],
     });
   }
 
@@ -47,6 +47,9 @@ export class EditBookComponent implements OnInit {
         console.error('Error al cargar los géneros:', err);
       },
     });
+  }
+  hasErrors(controlName: string, errorType: string) {
+    return this.formularioEditar.get(controlName)?.hasError(errorType) && this.formularioEditar.get(controlName)?.touched;
   }
 
   buscarLibro() {
