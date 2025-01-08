@@ -1,0 +1,40 @@
+<h1>Detalle de un libro</h1>
+<ng-container>
+    <div>
+        <div [formGroup]="searchForm" class="mb-3">
+            <label for="search" class="form-label">Buscar Libro por Id</label>
+            <input
+                type="text"
+                id="search"
+                formControlName="searchQuery"
+                class="form-control"
+                placeholder="Ingrese el Id"
+            />
+            <div *ngIf="searchForm.get('searchQuery')?.touched && searchForm.get('searchQuery')?.invalid" class="text-danger">
+                <p *ngIf="searchForm.get('searchQuery')?.errors?.['required']">
+                    Este campo es obligatorio.
+                </p>
+                <p *ngIf="searchForm.get('searchQuery')?.errors?.['pattern']">
+                    Solo se permiten valores numéricos.
+                </p>
+            </div>
+            <button (click)="buscarLibro()" class="btn btn-primary mt-3">Buscar</button>
+        </div>        
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+        <div *ngIf="book" class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Título: {{ book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Autor: {{ book.author }}</h6>
+                <p class="card-text">Género: {{ book.genre }}</p>
+                <p class="card-text" *ngIf="book.publishedYear">Año de publicación: {{ book.publishedYear }}</p>
+            </div>
+        </div>
+        
+        <div *ngIf="!book && !errorMessage && !searchForm.get('searchQuery')?.touched">
+            <p class="text-muted">Ingrese el Id del libro y presione "Buscar".
+            </p>
+        </div>
+
+    </div>
+</ng-container>
