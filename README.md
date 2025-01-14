@@ -30,31 +30,19 @@ Esta es una aplicación web diseñada para gestionar una colección de libros. I
 ```bash
 git clone https://github.com/jeansot/pruebaJean.git
 
-### Backend
-Desde la raíz del proyecto:
-cd API
-npm start
-
-
-### Frontend
-Desde la raíz del proyecto:
-cd APP
-npm start
-
-
 ### Uso
 Iniciar la aplicación
 Backend
 Desde la raíz del proyecto:
 cd API
-npm run start
+npm start
 
 El servidor estará disponible en http://localhost:3900.
 
 ### Frontend
 Desde la raíz del proyecto:
 cd APP
-ng serve --open
+npm start
 La aplicación estará disponible en http://localhost:4200.
 
 ### Rutas del Backend
