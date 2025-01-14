@@ -33,13 +33,13 @@ git clone https://github.com/jeansot/pruebaJean.git
 ### Backend
 Desde la raíz del proyecto:
 cd API
-npm install
+npm start
 
 
 ### Frontend
 Desde la raíz del proyecto:
 cd APP
-npm install
+npm start
 
 
 ### Uso
